@@ -23,7 +23,10 @@ export default class CreateStoryPresenter {
         this.#map.mapConfig.removeLayer(this.#marker);
       }
 
-      this.#marker = await L.marker(event.latlng);
+      this.#marker = await L.marker(
+        { ...event.latlng },
+        { icon: this.#map.createMarkerIcon() }
+      );
       this.#marker.addTo(this.#map.mapConfig);
       this.#clickedLatLng = event.latlng;
       this.#view.updateLatLngValue(this.#clickedLatLng);

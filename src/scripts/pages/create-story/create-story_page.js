@@ -111,7 +111,25 @@ export default class CreateStoryPage {
     }
   }
 
+  setupCameraControls() {
+    const takePictureBtn = document.querySelector('#take-picture__button');
+    const cancelButton = document.querySelector('#cancel-button');
+
+    const newTakePictureBtn = takePictureBtn.cloneNode(true);
+    const newCancelButton = cancelButton.cloneNode(true);
+
+    takePictureBtn.parentNode.replaceChild(newTakePictureBtn, takePictureBtn);
+    cancelButton.parentNode.replaceChild(newCancelButton, cancelButton);
+
+    newTakePictureBtn.addEventListener('click', () => this.cameraTakePicture());
+    newCancelButton.addEventListener('click', () =>
+      this.closeCamera(this.#stream)
+    );
+  }
+
   cameraLaunch(stream) {
+    if (!stream) return;
+
     const cameraContainer = document.querySelector('.open-webcam__container');
     cameraContainer.innerHTML = `
       <video id="camera-video" class="camera__video">
@@ -122,35 +140,26 @@ export default class CreateStoryPage {
         <button type="button" id="cancel-button" class="danger-button">Close Camera</button>
       </div>
     `;
-    const cameraVideo = document.querySelector('#camera-video');
 
+    const cameraVideo = document.querySelector('#camera-video');
+    if (!cameraVideo) return;
+
+    this.#stream = stream;
     cameraVideo.srcObject = stream;
     cameraVideo.play();
 
-    if (!Array.isArray(window.currentStreams)) {
-      window.currentStreams = [stream];
-      return;
-    }
-
-    window.currentStreams = [...window.currentStreams, stream];
-
-    // Camera Button Event Listener
-    const takePictureBtn = document.querySelector('#take-picture__button');
-    takePictureBtn.addEventListener(
-      'click',
-      async () => await this.cameraTakePicture()
-    );
-
-    const cancelButton = document.querySelector('#cancel-button');
-    cancelButton.addEventListener('click', async () => {
-      await this.closeCamera(this.#stream);
+    cameraVideo.addEventListener('loadedmetadata', () => {
+      this.setupCameraControls();
     });
   }
 
   closeCamera(stream) {
+    if (!stream) return;
+
     stream.getTracks().forEach(track => track.stop());
 
     const cameraContainer = document.querySelector('.open-webcam__container');
+
     cameraContainer.innerHTML = `
       <div tabindex="0" id="camera-logo" class="camera-logo">
         <i class="fa-solid fa-camera"></i>
@@ -161,11 +170,11 @@ export default class CreateStoryPage {
     this.setupCamera();
 
     const cameraResultContainer = document.querySelector('#camera-result');
-
     if (cameraResultContainer) {
       this.removeTakenPicture();
-      return;
     }
+
+    this.#stream = null;
   }
 
   populateCanvas(image) {

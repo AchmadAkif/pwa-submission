@@ -1,4 +1,6 @@
 import L from 'leaflet';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 export default class Map {
   mapConfig;
@@ -34,12 +36,25 @@ export default class Map {
   async generateMarkersFromAPI(item) {
     const { lat, lng, description, name } = item;
 
-    await L.marker({
-      lat: lat,
-      lng: lng,
-    })
+    await L.marker(
+      {
+        lat: lat,
+        lng: lng,
+      },
+      { icon: this.createMarkerIcon() }
+    )
       .addTo(this.mapConfig)
       .bindPopup(`<p>${description}</p><p>By: ${name}`)
       .openPopup();
+  }
+
+  createMarkerIcon() {
+    return L.icon({
+      iconUrl: markerIcon,
+      shadowUrl: markerShadow,
+      iconSize: [25, 41],
+      iconAnchor: [12, 36],
+      popupAnchor: [0, -30],
+    });
   }
 }
