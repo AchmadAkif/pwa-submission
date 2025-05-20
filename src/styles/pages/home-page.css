@@ -1,0 +1,132 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-container .section-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+}
+
+#story-list__container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+
+  gap: 20px;
+}
+
+.home-page__map__container {
+  height: 500px;
+  margin-bottom: 50px;
+}
+
+.story__location__map {
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  border-radius: 5px;
+}
+
+.story-card {
+  display: flex;
+  flex-direction: column;
+
+  border: solid 1px rgb(132, 132, 132);
+  border-radius: 5px;
+}
+
+.story-card__main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.story-card__body {
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.story-card__description {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.save-story__button {
+  padding: 7px 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background-color: #4aa6c0;
+  color: white;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+
+  cursor: pointer;
+  border-radius: 5px;
+  border-style: none;
+
+  transition: 0.3s ease;
+}
+
+.save-story__button.saved {
+  background-color: #e0e0e0;
+  color: #4caf50;
+}
+
+.save-story__button:hover {
+  background-color: #3b879c;
+}
+
+.save-story__button.saved:hover {
+  background-color: #c1c1c1;
+}
+
+.story-card__image {
+  height: 250px;
+  max-width: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.story-card__more-info p {
+  font-size: 12px;
+}
+
+.story-card__created-at {
+  display: flex;
+  gap: 10px;
+}
+
+.story-card__created-at p {
+  font-size: 14px;
+  color: rgb(96, 96, 96);
+}
+
+@media (min-width: 768px) {
+  #story-list__container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  #story-list__container {
+    padding: 0 32px 0;
+
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 15px;
+  }
+
+  .home-page__map__container {
+    padding: 0 32px;
+  }
+}

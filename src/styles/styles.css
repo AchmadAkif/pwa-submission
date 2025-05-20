@@ -1,0 +1,275 @@
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.container {
+  padding-inline: 32px;
+  margin-inline: auto;
+  max-width: 1300px;
+}
+
+.main-header {
+  min-height: 70px;
+  padding: 0 30px 0 30px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+
+  z-index: 1;
+  position: sticky;
+  top: 0;
+
+  background-color: white;
+  box-shadow: 0 1px 4px 0 #00000055;
+}
+
+.skip-to-content {
+  position: absolute !important;
+
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  color: red;
+}
+
+.skip-to-content:focus {
+  position: unset !important;
+}
+
+.brand-name {
+  font-size: 1.125rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #00a765;
+}
+
+.navigation-drawer {
+  min-height: 100vh;
+  width: 200px;
+  padding: 20px 10px;
+  background-color: #fff;
+
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+
+  box-shadow: 0 0 4px 2px #00000033;
+  transform: translateX(-100%);
+  transition: transform 350ms;
+}
+
+.navigation-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-button {
+  padding: 8px;
+  border: 0;
+  border-radius: 4px;
+
+  display: inline-block;
+  background-color: transparent;
+
+  font-weight: bold;
+  font-size: 28px;
+  color: #00a765;
+
+  cursor: pointer;
+}
+
+.nav-list {
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px 20px;
+}
+
+.nav-list li {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list li a {
+  padding: 6px 10px;
+
+  display: block;
+
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-list li a:hover {
+  text-decoration: underline;
+}
+
+.nav-list .logout-button {
+  padding: 10px 21px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background-color: #ce562d;
+  color: white;
+
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  border-radius: 5px;
+  border-style: none;
+}
+
+.nav-list .create-story__button {
+  padding: 10px 21px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background-color: #00a765;
+  color: white;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+
+  cursor: pointer;
+  border-radius: 5px;
+  border-style: none;
+}
+
+.nav-list .subscribe-button,
+.nav-list .unsubscribe-button {
+  padding: 10px 21px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background-color: #00a765;
+  color: white;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+
+  cursor: pointer;
+  border-radius: 5px;
+  border-style: none;
+}
+
+.skip-to-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #007bff;
+  color: white;
+  padding: 5px 7px;
+  border: none;
+  border-radius: 4px;
+  z-index: 1000;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.skip-to-content:focus {
+  transform: translateY(0);
+}
+
+/* MAIN */
+.main-content {
+  padding: 30px 18px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  view-transition-name: main-content;
+}
+
+/* HIDE ELEMENT */
+.hidden {
+  display: none !important;
+}
+
+/* Spinner Animation */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+i.loading-spinner {
+  animation: rotate 1s linear infinite;
+}
+
+/* Page Transition */
+@keyframes move-out {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes move-in {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
+::view-transition-old(main-content) {
+  animation-name: move-out;
+  animation-duration: 200ms;
+}
+
+::view-transition-new(main-content) {
+  animation-name: move-in;
+  animation-duration: 200ms;
+}
+
+@media screen and (width > 1000px) {
+  .navigation-drawer {
+    min-height: auto;
+    width: auto;
+    padding: 0;
+    background-color: transparent;
+
+    flex-direction: row;
+    justify-content: space-between;
+
+    position: static;
+    box-shadow: none;
+    transform: translateX(0);
+  }
+
+  .nav-list {
+    flex-direction: row;
+  }
+
+  .nav-list li a {
+    display: inline-block;
+  }
+
+  .drawer-button {
+    display: none;
+  }
+}

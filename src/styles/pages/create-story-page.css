@@ -1,0 +1,145 @@
+.create-story__container {
+  min-width: 256px;
+  width: 100%;
+  max-width: 800px;
+  padding: 30px 25px;
+
+  border: solid 1px rgb(132, 132, 132);
+  border-radius: 5px;
+}
+
+.create-story__container h1 {
+  margin-bottom: 20px;
+
+  font-size: 30px;
+}
+
+.create-story__form textarea {
+  min-height: 150px;
+  padding: 10px;
+  resize: vertical;
+
+  font-family: 'Inter', sans-serif;
+  border-radius: 5px;
+}
+
+.open-webcam__container {
+  padding: 20px;
+
+  border: solid 1px rgb(132, 132, 132);
+  border-radius: 5px;
+
+  font-size: 50px;
+}
+
+.open-webcam__container i,
+.open-webcam__container p {
+  cursor: pointer;
+}
+
+.open-webcam__container video {
+  width: 100%;
+
+  border-radius: 5px;
+}
+
+.open-webcam__container .camera-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.camera-logo p {
+  font-size: 18px;
+}
+
+.camera-canvas {
+  display: none;
+}
+
+.camera-result img {
+  width: 100%;
+}
+
+.open-webcam__container .camera-tool__buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.create-story__form__location__map__container {
+  height: 400px;
+}
+
+.create-story__form__location__map {
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+}
+
+.create-story__form__location__title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.create-story__form__location__lat-lng {
+  display: flex;
+  gap: 10px;
+}
+
+.solid-button {
+  width: 100%;
+  background-color: #00a765;
+  border-radius: 5px;
+  border-style: none;
+  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.15;
+  margin: 0;
+  padding: 10px 21px;
+  transition: 0.3s;
+}
+
+.success-button {
+  background-color: transparent;
+  border: solid 1px #00a765;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #00a765;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.danger-button {
+  background-color: transparent;
+  border: solid 1px #ce562d;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #ce562d;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.success-button:hover {
+  background-color: #00a765;
+  color: white;
+}
+
+.danger-button:hover {
+  background-color: #ce562d;
+  color: white;
+}
+
+@media (min-width: 426px) {
+  .camera-result img {
+    max-width: 240px;
+  }
+}
